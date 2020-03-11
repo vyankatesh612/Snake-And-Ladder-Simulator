@@ -5,10 +5,12 @@ echo "WelCome to Snake and Ladder Computation"
 #CONSTANT VARIABLE
 PlayerCurrentPosition=0
 WinningPosition=100
+diceCount=0
 
 function rollDice()
 	{
 		dice=$((1+RANDOM%6))
+		diceCount=$(($diceCount + 1))
 		echo "The number on Dice is : "$dice
 	}
 
@@ -27,6 +29,8 @@ function checkOption()
 				fi
 				;;
 		esac
+		echo "number of time dice was played : $diceCount"
+		echo "player current position is :" $PlayerCurrentPosition 
 	}
 
 function checkWin()
