@@ -34,7 +34,16 @@ function checkWin()
 		while [[ $PlayerCurrentPosition -lt $WinningPosition ]]
 		do
 			rollDice
-			checkOption
+			if [[ $(($PlayerCurrentPosition + $dice)) -gt 100 ]]
+			then 
+				$playerCurrentPosition=$PlayerCurrentPosition
+			else
+				checkOption
+			fi
+			if [[ $PlayerCurrentPosition == $WinningPosition ]]
+			then
+				echo "YOU WIN ....!!!"
+			fi
 		done
 	}
 checkWin
