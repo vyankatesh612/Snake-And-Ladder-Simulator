@@ -4,13 +4,13 @@ echo "WelCome to Snake and Ladder Computation"
 
 #CONSTANT VARIABLE
 PlayerCurrentPosition=0
+WinningPosition=100
 
 function rollDice()
 	{
 		dice=$((1+RANDOM%6))
 		echo "The number on Dice is : "$dice
 	}
-rollDice
 
 function checkOption()
 	{
@@ -21,7 +21,20 @@ function checkOption()
 			2)PlayerCurrentPosition=$(($PlayerCurrentPosition + $dice))
 				;;
 			3)PlayerCurrentPosition=$(( $PlayerCurrentPosition - $dice))
+				if [[ $PlayerCurrentPosition -lt 0 ]]
+				then
+					PlayerCurrentPosition=0
+				fi
 				;;
 		esac
 	}
-checkOption
+
+function checkWin()
+	{
+		while [[ $PlayerCurrentPosition -lt $WinningPosition ]]
+		do
+			rollDice
+			checkOption
+		done
+	}
+checkWin
